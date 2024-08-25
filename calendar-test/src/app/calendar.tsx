@@ -1,21 +1,18 @@
 "use client"
 
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from "@fullcalendar/interaction" // needed for dateClick
+import React, { forwardRef } from 'react';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
+const Calendar = forwardRef(({ events }, ref) => {
+    return (
+        <FullCalendar
+            ref={ref}
+            plugins={[dayGridPlugin]}
+            initialView="dayGridMonth"
+            events={events}
+        />
+    );
+});
 
-export default function Calendar() {
-
-    const handleDateClick = (arg: any) => {
-        alert(JSON.stringify(arg));
-    }
-
-  return (
-    <FullCalendar
-      plugins={[ dayGridPlugin, interactionPlugin ]}
-      initialView="dayGridMonth"
-      dateClick={handleDateClick}
-    />
-  );
-}
+export default Calendar;
